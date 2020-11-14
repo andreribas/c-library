@@ -6,16 +6,28 @@ class MainController
 {
     public static function index()
     {
-        echo "<h1>Home page</h1>";
+        $headers = Headers::getAll();
+
+        self::renderTemplate('index.php', [
+            'title' => 'Hello World',
+        ]);
     }
 
     public static function about()
     {
-        echo "<h1>About us</h1>";
+        self::renderTemplate('about.php', [
+            'title' => 'About us',
+        ]);
     }
 
     public static function notFound()
     {
-        echo "<h1>404: Page not found</h1>";
+        self::renderTemplate('404.php', []);
+    }
+
+    public static function renderTemplate(string $template_name, array $params): void
+    {
+        extract($params);
+        include(PROJECT_ROOT . '/templates/' . $template_name);
     }
 }
