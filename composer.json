@@ -1,0 +1,26 @@
+{
+    "name": "andreribas/c-library",
+    "description": "A system to document the standard C library",
+    "type": "project",
+    "require": {
+        "php": "7.4.*"
+    },
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "André Ribas",
+            "email": "andreribas@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AndreRibas\\Clibrary\\": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "test/lib/",
+            "AndreRibas\\Clibrary\\": "test/support/"
+        }
+    }
+}
