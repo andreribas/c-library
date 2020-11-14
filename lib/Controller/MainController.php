@@ -2,14 +2,16 @@
 
 namespace AndreRibas\Clibrary\Controller;
 
-class MainController
+use AndreRibas\Clibrary\Repository\HeaderRepository;
+
+class MainController extends Controller
 {
     public static function index()
     {
-        $headers = Headers::getAll();
-
+        $headers = HeaderRepository::getAll();
         self::renderTemplate('index.php', [
-            'title' => 'Hello World',
+            'title' => 'Headers',
+            'headers' => $headers,
         ]);
     }
 
@@ -23,11 +25,5 @@ class MainController
     public static function notFound()
     {
         self::renderTemplate('404.php', []);
-    }
-
-    public static function renderTemplate(string $template_name, array $params): void
-    {
-        extract($params);
-        include(PROJECT_ROOT . '/templates/' . $template_name);
     }
 }

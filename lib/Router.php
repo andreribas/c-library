@@ -11,8 +11,19 @@ class Router
     {
         $request_uri = $_SERVER['REQUEST_URI'];
         $request_method = $_SERVER['REQUEST_METHOD'];
-        $callable = self::$routes[$request_method][$request_uri] ?? self::$not_found_action;
-        $callable();
+
+        foreach (self::$routes[$request_method] as $route_pattern => $route_action) {
+            $matches = [];
+            $match = preg_match("@^$route_pattern$@", $request_uri, $matches);
+
+            if ($match) {
+                array_shift($matches);
+                $route_action(...$matches);
+                return;
+            }
+        }
+
+        (self::$not_found_action)();
     }
 
     public static function get(string $route_uri, callable $route_action)
