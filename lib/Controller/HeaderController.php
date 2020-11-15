@@ -2,18 +2,17 @@
 
 namespace AndreRibas\Clibrary\Controller;
 
+use AndreRibas\Clibrary\App\Response;
 use AndreRibas\Clibrary\Repository\FunctionnRepository;
 use AndreRibas\Clibrary\Repository\HeaderRepository;
 
-class HeaderController extends Controller
+class HeaderController
 {
     public static function show($header_id)
     {
-        $header = HeaderRepository::getById($header_id);
-        $functionns = FunctionnRepository::getByHeaderId((int)$header_id);
-        self::renderTemplate('header.php', [
-            'header' => $header,
-            'functionns' => $functionns,
+        return new Response('header.php', [
+            'header' => HeaderRepository::getById($header_id),
+            'functionns' => FunctionnRepository::getByHeaderId($header_id),
         ]);
     }
 }

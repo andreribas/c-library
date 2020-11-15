@@ -2,7 +2,6 @@
 
 namespace AndreRibas\Clibrary\Repository;
 
-use AndreRibas\Clibrary\DB;
 use AndreRibas\Clibrary\Model\Functionn;
 
 class FunctionnRepository
@@ -34,8 +33,16 @@ class FunctionnRepository
     public static function getByTitle($function_title)
     {
         $db = DB::getDB();
-        $stmt = $db->query("SELECT * FROM `function` WHERE title like :id");
-        $stmt->bindValue(':id', "%$function_title%");
-        return $stmt->fetchObject(Functionn::class);
+        $stmt = $db->prepare("SELECT * FROM `function` WHERE title like :title");
+        $stmt->execute([':title' => "%$function_title%"]);
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, Functionn::class);
+    }
+
+    public static function create(Functionn $functionn)
+    {
+        $db = DB::getDB();
+        $stmt = $db->prepare("INSERT INTO `function` (title, description, header_id) VALUES (:title, :description, :header_id)");
+        $stmt->execute([':title' => $functionn->title, ':description' => $functionn->description, ':header_id' => $functionn->header_id]);
+        return $db->lastInsertId();
     }
 }

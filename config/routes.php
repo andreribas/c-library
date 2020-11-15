@@ -3,7 +3,7 @@
 use AndreRibas\Clibrary\Controller\FunctionnController;
 use AndreRibas\Clibrary\Controller\HeaderController;
 use AndreRibas\Clibrary\Controller\MainController;
-use AndreRibas\Clibrary\Router;
+use AndreRibas\Clibrary\App\Router;
 
 Router::notFound([MainController::class, 'notFound']);
 Router::get('/', [MainController::class, 'index']);

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreRibas\Clibrary;
+namespace AndreRibas\Clibrary\Repository;
 
 class DB
 {

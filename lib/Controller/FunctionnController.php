@@ -2,15 +2,15 @@
 
 namespace AndreRibas\Clibrary\Controller;
 
+use AndreRibas\Clibrary\App\Response;
 use AndreRibas\Clibrary\Repository\FunctionnRepository;
 
-class FunctionnController extends Controller
+class FunctionnController
 {
     public static function show($functionn_id)
     {
-        $functionn = FunctionnRepository::getById((int)$functionn_id);
-        self::renderTemplate('functionn.php', [
-            'functionn' => $functionn,
+        return new Response('functionn.php', [
+            'functionn' => FunctionnRepository::getById((int)$functionn_id),
         ]);
     }
 }

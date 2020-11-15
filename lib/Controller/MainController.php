@@ -2,28 +2,28 @@
 
 namespace AndreRibas\Clibrary\Controller;
 
+use AndreRibas\Clibrary\App\Response;
 use AndreRibas\Clibrary\Repository\HeaderRepository;
 
-class MainController extends Controller
+class MainController
 {
     public static function index()
     {
-        $headers = HeaderRepository::getAll();
-        self::renderTemplate('index.php', [
+        return new Response('index.php', [
             'title' => 'Headers',
-            'headers' => $headers,
+            'headers' => HeaderRepository::getAll(),
         ]);
     }
 
     public static function about()
     {
-        self::renderTemplate('about.php', [
+        return new Response('about.php', [
             'title' => 'About us',
         ]);
     }
 
     public static function notFound()
     {
-        self::renderTemplate('404.php', []);
+        return new Response('404.php');
     }
 }

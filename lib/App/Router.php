@@ -1,29 +1,25 @@
 <?php
 
-namespace AndreRibas\Clibrary;
+namespace AndreRibas\Clibrary\App;
 
 class Router
 {
-    private static $routes;
-    private static $not_found_action;
+    protected static $routes;
+    protected static $not_found_action;
 
-    public static function run()
+    public static function getRouteFromRequest(Request $request)
     {
-        $request_uri = $_SERVER['REQUEST_URI'];
-        $request_method = $_SERVER['REQUEST_METHOD'];
-
-        foreach (self::$routes[$request_method] as $route_pattern => $route_action) {
+        foreach (self::$routes[$request->getHttpMethod()] as $route_pattern => $route_action) {
             $matches = [];
-            $match = preg_match("@^$route_pattern$@", $request_uri, $matches);
+            $match = preg_match("@^$route_pattern$@", $request->getUri(), $matches);
 
             if ($match) {
                 array_shift($matches);
-                $route_action(...$matches);
-                return;
+                return [$route_action, $matches];
             }
         }
 
-        (self::$not_found_action)();
+        return [self::$not_found_action, null];
     }
 
     public static function get(string $route_uri, callable $route_action)

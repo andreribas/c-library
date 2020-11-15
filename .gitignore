@@ -2,3 +2,4 @@
 vendor/
 config/db.php
 db-data/
+.phpunit.result.cache
