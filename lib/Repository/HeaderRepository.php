@@ -14,6 +14,14 @@ class HeaderRepository
         return $stmt->fetchAll(\PDO::FETCH_CLASS, Header::class);
     }
 
+    public static function getAllWithFunctionns()
+    {
+        return array_map(function(Header $header) {
+            $header->functionns = FunctionnRepository::getByHeaderId($header->id);
+            return $header;
+        }, HeaderRepository::getAll());
+    }
+
     public static function getById($id): Header
     {
         $db = Service::get('db');

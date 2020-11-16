@@ -6,23 +6,25 @@ class Renderer
 {
     private string $layout_path;
     private array $blocks = [];
+    private Response $response;
 
     public function renderResponse(Response $response): void
     {
-        $params = $response->getParams();
-        $this->renderTemplate($response->getTemplatePath(), $params);
-        !empty($this->layout_path) && $this->renderTemplate($this->layout_path);
+        $this->response = $response;
+        $this->template_include($response->getTemplatePath());
+        !empty($this->layout_path) && $this->template_include($this->layout_path);
     }
 
-    public function renderTemplate(string $templatePath, array $params = []): void
+    public function template_include(string $templatePath, array $params = []): void
     {
+        $params = array_merge($this->response->getParams(), $params);
         if (!empty($params)) {
             extract($params);
         }
         include(PROJECT_ROOT . '/templates/' . $templatePath);
     }
 
-    public function extends_layout(string $layout_path)
+    public function template_extend(string $layout_path)
     {
         $this->layout_path = $layout_path;
     }
@@ -42,7 +44,7 @@ class Renderer
         $this->blocks[$block_name] = $value;
     }
 
-    public function block_render(string $block_name)
+    public function block_include(string $block_name)
     {
         echo $this->blocks[$block_name] ?? '';
     }

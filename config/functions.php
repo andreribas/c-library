@@ -2,8 +2,12 @@
 
 use AndreRibas\Clibrary\App\Service;
 
-function extends_layout(string $block_name) {
-    Service::get('renderer')->extends_layout($block_name);
+function template_extend(string $block_name) {
+    Service::get('renderer')->template_extend($block_name);
+}
+
+function template_include(string $block_name) {
+    Service::get('renderer')->template_include($block_name);
 }
 
 function block_start(string $block_name) {
@@ -18,6 +22,6 @@ function block_set(string $block_name, string $value) {
     Service::get('renderer')->block_set($block_name, $value);
 }
 
-function block_render(string $block_name) {
-    Service::get('renderer')->block_render($block_name);
+function block_include(string $block_name) {
+    Service::get('renderer')->block_include($block_name);
 }

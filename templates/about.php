@@ -1,4 +1,4 @@
-<?php extends_layout('layout.php'); ?>
+<?php template_extend('layout.php'); ?>
 
 <?php block_set('title', 'About Us'); ?>
 

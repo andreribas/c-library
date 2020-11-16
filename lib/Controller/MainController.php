@@ -10,8 +10,8 @@ class MainController
     public static function index()
     {
         return new Response('index.php', [
-            'title' => 'Headers',
-            'headers' => HeaderRepository::getAll(),
+            'title' => 'C Library',
+            'headers' => HeaderRepository::getAllWithFunctionns(),
         ]);
     }
 
