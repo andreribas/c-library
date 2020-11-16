@@ -13,6 +13,7 @@ class App
         ]);
         [$route_action, $route_params] = Router::getRouteFromRequest($request);
         $response = $route_action(...$route_params);
-        Renderer::renderResponse($response);
+
+        Service::get('renderer')->renderResponse($response);
     }
 }

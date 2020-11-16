@@ -19,7 +19,7 @@ class Router
             }
         }
 
-        return [self::$not_found_action, null];
+        return [self::$not_found_action, []];
     }
 
     public static function get(string $route_uri, callable $route_action)

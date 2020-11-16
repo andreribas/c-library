@@ -16,7 +16,7 @@ class RouterTest extends TestCase
 
         $this->assertRouteResult('/', 'GET', 'HOME', []);
         $this->assertRouteResult('/entity/2', 'GET', 'HOME', [2]);
-        $this->assertRouteResult('/batata', 'GET', '404', null);
+        $this->assertRouteResult('/batata', 'GET', '404', []);
     }
 
     public function createRequest(string $request_uri, string $request_method): Request
