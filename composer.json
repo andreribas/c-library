@@ -3,7 +3,7 @@
     "description": "A system to document the standard C library",
     "type": "project",
     "require": {
-        "php": "7.4.*",
+        "php": "8.0",
         "ext-pdo": "*"
     },
     "require-dev": {
