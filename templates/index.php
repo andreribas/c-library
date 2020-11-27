@@ -1,4 +1,4 @@
-<?php template_extend('layout.php'); ?>
+<?php template_extend('base_template.php'); ?>
 
 <?php block_set('title', $title); ?>
 
@@ -15,5 +15,6 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         </main>
     </div>
+</div>
 <?php block_end(); ?>
 

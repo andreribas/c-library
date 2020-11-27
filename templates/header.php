@@ -1,4 +1,4 @@
-<?php template_extend('layout.php'); ?>
+<?php template_extend('base_template.php'); ?>
 
 <?php block_set('title', "Header - {$header->title}"); ?>
 
