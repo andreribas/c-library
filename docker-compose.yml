@@ -11,18 +11,19 @@ services:
       - "3306:3306"
     volumes:
       - "./db-data/mysql:/var/lib/mysql"
-#  web:
-#    image: php:7.4-cli
-#    container_name: php_web
-#    depends_on:
-#      - db
-#    volumes:
-#      - .:/var/www/
-#    secrets:
-#      - sshkey_github
-#    ports:
-#      - "8000:80"
-#
-#secrets:
-#  sshkey_github:
-#    file: ~/.ssh/id_rsa
+  web:
+    build: .
+    container_name: php_web
+    command: php -S 0.0.0.0:8000 -t /var/www/public
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/
+    secrets:
+      - sshkey_github
+    ports:
+      - "8000:8000"
+
+secrets:
+  sshkey_github:
+    file: ~/.ssh/id_rsa
