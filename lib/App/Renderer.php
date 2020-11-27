@@ -11,6 +11,7 @@ class Renderer
     public function renderResponse(Response $response): void
     {
         $this->response = $response;
+        http_response_code($response->getHttpCode());
         $this->template_include($response->getTemplatePath());
         !empty($this->layout_path) && $this->template_include($this->layout_path);
     }

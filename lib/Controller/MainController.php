@@ -2,6 +2,7 @@
 
 namespace AndreRibas\Clibrary\Controller;
 
+use AndreRibas\Clibrary\App\HttpCode;
 use AndreRibas\Clibrary\App\Response;
 use AndreRibas\Clibrary\Repository\HeaderRepository;
 
@@ -24,6 +25,6 @@ class MainController
 
     public static function notFound()
     {
-        return new Response('404.php');
+        return new Response('404.php', http_code: HttpCode::NOT_FOUND);
     }
 }
