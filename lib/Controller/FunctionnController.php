@@ -26,23 +26,23 @@ class FunctionnController
 
     public static function show(Request $request, $functionn_id)
     {
-        return new Response('functionn.php', [
+        return new Response('functionn/show.php', [
             'headers' => HeaderRepository::getAllWithFunctionns(),
             'functionn' => FunctionnRepository::getById((int)$functionn_id),
         ]);
     }
 
-    public static function edit(Request $request)
+    public static function edit(Request $request, $functionn_id)
     {
 
     }
 
-    public static function update(Request $request)
+    public static function update(Request $request, $functionn_id)
     {
 
     }
 
-    public static function destroy(Request $request)
+    public static function destroy(Request $request, $functionn_id)
     {
 
     }

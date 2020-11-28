@@ -1,6 +1,6 @@
 
 <div class="accordion" id="accordion">
-    <?php foreach ($headers as $header): ?>
+    <?php foreach (\AndreRibas\Clibrary\Repository\HeaderRepository::getAllWithFunctionns() as $header): ?>
         <div class="">
             <div class="" id="heading<?= $header->id ?>">
                 <h5 class="mb-0">

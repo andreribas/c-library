@@ -13,7 +13,6 @@ class MainController
     {
         return new Response('index.php', [
             'title' => 'C Library',
-            'headers' => HeaderRepository::getAllWithFunctionns(),
         ]);
     }
 
@@ -34,7 +33,6 @@ class MainController
         return new Response(
             'error.php',
             [
-                'headers' => HeaderRepository::getAllWithFunctionns(),
                 'error' => $error,
             ],
             HttpCode::ERROR

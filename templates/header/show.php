@@ -1,3 +1,6 @@
+<?php /** @var \AndreRibas\Clibrary\Model\Functionn[] $functionns */ ?>
+<?php /** @var \AndreRibas\Clibrary\Model\Header $header */ ?>
+
 <?php template_extend('base_template.php'); ?>
 
 <?php block_set('title', "Header - {$header->title}"); ?>
