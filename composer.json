@@ -26,5 +26,8 @@
             "Tests\\": "test/lib/",
             "AndreRibas\\Clibrary\\": "test/support/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }
