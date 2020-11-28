@@ -11,7 +11,7 @@
 
     <ul>
         <?php foreach ($functionns as $functionn): ?>
-            <li><a href="/function/<?= $functionn->id ?>"><?= $functionn->title ?></a></li>
+            <li><a href="/functions/<?= $functionn->id ?>"><?= $functionn->title ?></a></li>
         <?php endforeach; ?>
     </ul>
 <?php block_end(); ?>

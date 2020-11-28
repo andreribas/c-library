@@ -11,7 +11,9 @@ class FunctionnController
 {
     public static function index(Request $request)
     {
-
+        return new Response('functionn/index.php', [
+            'headers' => HeaderRepository::getAllWithFunctionns(),
+        ]);
     }
 
     public static function create(Request $request)

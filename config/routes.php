@@ -18,10 +18,10 @@ Router::get('/headers/([0-9]+)/edit', [HeaderController::class, 'edit']);
 Router::put('/headers/([0-9]+)', [HeaderController::class, 'update']);
 Router::delete('/headers/([0-9]+)', [HeaderController::class, 'destroy']);
 
-Router::get('/function', [FunctionnController::class, 'index']);
-Router::get('/function/create', [FunctionnController::class, 'create']);
-Router::post('/function', [FunctionnController::class, 'store']);
-Router::get('/function/([0-9]+)', [FunctionnController::class, 'show']);
-Router::get('/function/([0-9]+)/edit', [FunctionnController::class, 'edit']);
-Router::put('/function/([0-9]+)', [FunctionnController::class, 'update']);
-Router::delete('/function/([0-9]+)', [FunctionnController::class, 'destroy']);
+Router::get('/functions', [FunctionnController::class, 'index']);
+Router::get('/functions/create', [FunctionnController::class, 'create']);
+Router::post('/functions', [FunctionnController::class, 'store']);
+Router::get('/functions/([0-9]+)', [FunctionnController::class, 'show']);
+Router::get('/functions/([0-9]+)/edit', [FunctionnController::class, 'edit']);
+Router::put('/functions/([0-9]+)', [FunctionnController::class, 'update']);
+Router::delete('/functions/([0-9]+)', [FunctionnController::class, 'destroy']);
