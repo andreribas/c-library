@@ -6,6 +6,7 @@ use AndreRibas\Clibrary\Controller\MainController;
 use AndreRibas\Clibrary\App\Router;
 
 Router::notFound([MainController::class, 'notFound']);
+Router::error([MainController::class, 'error']);
 Router::get('/', [MainController::class, 'index']);
 Router::get('/about', [MainController::class, 'about']);
 

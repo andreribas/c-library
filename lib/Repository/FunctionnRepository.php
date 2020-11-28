@@ -20,7 +20,11 @@ class FunctionnRepository
         $db = Service::get('db');
         $stmt = $db->prepare("SELECT * FROM `function` WHERE id = :id");
         $stmt->execute([':id' => $functionn_id]);
-        return $stmt->fetchObject(Functionn::class);
+        $object = $stmt->fetchObject(Functionn::class);
+        if ($object === false) {
+            throw new ModelNotFoundException("Function id {$functionn_id} not found");
+        }
+        return $object;
     }
 
     public static function getByHeaderId($header_id)

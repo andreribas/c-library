@@ -27,7 +27,11 @@ class HeaderRepository
         $db = Service::get('db');
         $stmt = $db->prepare("SELECT * FROM header WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        return $stmt->fetchObject(Header::class);
+        $object = $stmt->fetchObject(Header::class);
+        if ($object === false) {
+            throw new ModelNotFoundException("Header id {$id} not found");
+        }
+        return $object;
     }
 
     public static function create(Header $header)

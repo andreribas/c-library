@@ -6,6 +6,7 @@ class Router
 {
     protected static $routes;
     protected static $not_found_action;
+    protected static $error_action;
 
     public static function getRouteFromRequest(Request $request)
     {
@@ -35,5 +36,15 @@ class Router
     public static function notFound(callable $not_found_action)
     {
         self::$not_found_action = $not_found_action;
+    }
+
+    public static function error(callable $error_action)
+    {
+        self::$error_action = $error_action;
+    }
+
+    public static function getErrorAction()
+    {
+        return self::$error_action;
     }
 }
