@@ -10,9 +10,6 @@ class TestCase extends PhpunitTestCase
 {
     protected function setUp(): void
     {
-        define('ENV', 'test');
-        include(dirname(__FILE__) . '/../../config/setup.php');
-
         parent::setUp();
 
         RouterForTests::reset();

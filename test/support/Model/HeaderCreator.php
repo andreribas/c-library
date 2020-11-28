@@ -13,6 +13,7 @@ class HeaderCreator
         $header->title = $header_title;
         $header->description = $header_description;
         $header->id = HeaderRepository::create($header);
+        $header->functionns = [];
         return $header;
     }
 }

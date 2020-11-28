@@ -15,7 +15,7 @@ class MainControllerTest extends TestCase
         $response = MainController::index();
 
         $expected_params = [
-            'title' => 'Headers',
+            'title' => 'C Library',
             'headers' => [],
         ];
 
@@ -33,7 +33,7 @@ class MainControllerTest extends TestCase
         $response = MainController::index();
 
         $expected_params = [
-            'title' => 'Headers',
+            'title' => 'C Library',
             'headers' => $headers,
         ];
         $this->assertEquals('index.php', $response->getTemplatePath());

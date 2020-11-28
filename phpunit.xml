@@ -2,7 +2,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="config/setup.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -17,4 +17,7 @@
             <directory suffix="Test.php">./test/lib</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <env name="ENV" value="test" force="true" />
+    </php>
 </phpunit>
