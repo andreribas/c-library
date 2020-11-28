@@ -33,6 +33,16 @@ class Router
         self::$routes['POST'][$route_uri] = $route_action;
     }
 
+    public static function put(string $route_uri, callable $route_action)
+    {
+        self::$routes['PUT'][$route_uri] = $route_action;
+    }
+
+    public static function delete(string $route_uri, callable $route_action)
+    {
+        self::$routes['DELETE'][$route_uri] = $route_action;
+    }
+
     public static function notFound(callable $not_found_action)
     {
         self::$not_found_action = $not_found_action;
