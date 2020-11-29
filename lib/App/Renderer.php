@@ -22,7 +22,12 @@ class Renderer
         if (!empty($params)) {
             extract($params);
         }
-        include(PROJECT_ROOT . '/templates/' . $templatePath);
+        try {
+            include(PROJECT_ROOT . '/templates/' . $templatePath);
+        } catch (\Throwable $t) {
+            @ob_end_clean();
+            throw $t;
+        }
     }
 
     public function template_extend(string $layout_path)
