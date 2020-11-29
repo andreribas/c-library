@@ -5,6 +5,7 @@ namespace Tests;
 use AndreRibas\Clibrary\App\RouterForTests;
 use AndreRibas\Clibrary\App\Service;
 use AndreRibas\Clibrary\Facade\DB;
+use AndreRibas\Clibrary\Facade\Renderer;
 use PHPUnit\Framework\TestCase as PhpunitTestCase;
 
 class TestCase extends PhpunitTestCase
@@ -14,7 +15,7 @@ class TestCase extends PhpunitTestCase
         parent::setUp();
 
         RouterForTests::reset();
-        Service::get('renderer')->reset();
+        Renderer::get()->reset();
         DB::get()->beginTransaction();
     }
 

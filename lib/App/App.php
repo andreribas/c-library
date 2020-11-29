@@ -2,6 +2,8 @@
 
 namespace AndreRibas\Clibrary\App;
 
+use AndreRibas\Clibrary\Facade\Renderer;
+
 class App
 {
     public function run()
@@ -29,7 +31,7 @@ class App
     {
         $response = $action($request, ...$route_params);
         if ($response instanceof Response) {
-            Service::get('renderer')->renderResponse($response);
+            Renderer::get()->renderResponse($response);
         }
     }
 }
