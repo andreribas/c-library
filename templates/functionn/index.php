@@ -5,6 +5,11 @@
 <?php block_set('title', "Functions"); ?>
 
 <?php block_start('content'); ?>
+<div class="float-right">
+    <form action="/functions/create" method="get">
+        <button type="submit" class="btn btn-primary">Create new Function</button>
+    </form>
+</div>
 <h1>Functions</h1>
 
 <?php foreach ($headers as $header): ?>
