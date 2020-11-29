@@ -9,9 +9,6 @@
     <h1><?= $header->title ?></h1>
     <p><?= $header->description ?></p>
 
-    <ul>
-        <?php foreach ($functionns as $functionn): ?>
-            <li><a href="/functions/<?= $functionn->id ?>"><?= $functionn->title ?></a></li>
-        <?php endforeach; ?>
-    </ul>
+    <h4>Functions</h4>
+    <?php template_include('partial/list_functionns.php', ['functionns' => $functionns]); ?>
 <?php block_end(); ?>

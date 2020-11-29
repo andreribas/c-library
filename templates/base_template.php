@@ -23,7 +23,7 @@
         </button>
         <div class="collapse navbar-collapse pl-3 pr-3" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/headers">Headers</a>
             </li>
             <li class="nav-item">
@@ -41,7 +41,7 @@
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="sidebar-sticky pt-3">
-                    <?php template_include('side-menu.php'); ?>
+                    <?php template_include('partial/side-menu.php'); ?>
                 </div>
             </nav>
 

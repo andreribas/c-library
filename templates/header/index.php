@@ -6,11 +6,6 @@
 
 <?php block_start('content'); ?>
     <h1>Headers</h1>
-
-    <ul>
-        <?php foreach ($headers as $header): ?>
-            <li><a href="/headers/<?= $header->id ?>"><?= $header->title ?></a>: <?= $header->description ?></li>
-        <?php endforeach; ?>
-    </ul>
+    <?php template_include('partial/list_headers.php', ['functionns' => $headers]); ?>
 <?php block_end(); ?>
 

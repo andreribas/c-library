@@ -6,8 +6,8 @@ function template_extend(string $block_name) {
     Service::get('renderer')->template_extend($block_name);
 }
 
-function template_include(string $block_name) {
-    Service::get('renderer')->template_include($block_name);
+function template_include(string $block_name, array $params = []) {
+    Service::get('renderer')->template_include($block_name, $params);
 }
 
 function block_start(string $block_name) {
