@@ -57,4 +57,12 @@ class HeaderRepository
         $stmt->execute([':id' => $header->id]);
         return $stmt->rowCount() == 1;
     }
+
+    public static function update(Header $header)
+    {
+        $db = DB::get();
+        $stmt = $db->prepare("UPDATE header SET title = :title, description = :description WHERE id = :id");
+        $stmt->execute([':id' => $header->id, ':title' => $header->title, ':description' => $header->description]);
+        return $stmt->rowCount() == 1;
+    }
 }

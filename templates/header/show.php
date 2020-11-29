@@ -6,7 +6,10 @@
 <?php block_set('title', "Header - {$header->title}"); ?>
 
 <?php block_start('content'); ?>
-    <div class="float-right">
+    <div class="float-right d-inline-flex">
+        <form class="mr-2" action="/headers/<?= $header->id ?>/edit" method="get">
+            <button type="submit" class="btn btn-primary">Edit Header</button>
+        </form>
         <form action="/headers/<?= $header->id ?>/delete" method="post">
             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete the header <?= $header->title ?>');">Delete Header</button>
         </form>

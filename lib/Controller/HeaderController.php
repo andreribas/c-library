@@ -48,13 +48,22 @@ class HeaderController
     public static function edit(Request $request, $header_id)
     {
         return new Response('header/edit.php', [
-            'headers' => HeaderRepository::getAllWithFunctionns(),
+            'header' => HeaderRepository::getById($header_id),
         ]);
     }
 
     public static function update(Request $request, $header_id)
     {
+        $header = new Header();
+        $header->id = (int) $request->getParam('id');
+        $header->title = $request->getParam('title');
+        $header->description = $request->getParam('description');
+        $updated = HeaderRepository::update($header);
 
+        if ($updated) Flash::message("Header {$header->title} updated successfully");
+        else Flash::error("Error trying to update Header {$header->title}");
+
+        return self::show($request, $header_id);
     }
 
     public static function destroy(Request $request, $header_id)

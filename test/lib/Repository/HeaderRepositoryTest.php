@@ -40,6 +40,28 @@ class HeaderRepositoryTest extends TestCase
         $this->assertFalse($deleted);
     }
 
+    public function testUpdate()
+    {
+        $header = HeaderCreator::create('stdio.h', 'Standard Input/Output Library');
+        $header->title = 'math.h';
+        $header->description = 'Standard Math Library';
+
+        $updated = HeaderRepository::update($header);
+        $this->assertTrue($updated);
+
+        $header_from_get_by_id = HeaderRepository::getById($header->id);
+        $this->assertSameHeader($header, $header_from_get_by_id);
+    }
+
+    public function testUpdateNonExistentHeader()
+    {
+        $header = new Header();
+        $header->id = 1;
+
+        $updated = HeaderRepository::update($header);
+        $this->assertFalse($updated);
+    }
+
     public function assertSameHeader(Header $header, Header $header_from_get_by_id): void
     {
         $this->assertEquals($header->id, $header_from_get_by_id->id);
