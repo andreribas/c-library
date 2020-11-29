@@ -24,5 +24,5 @@ Router::get('/functions/create', [FunctionnController::class, 'create']);
 Router::post('/functions', [FunctionnController::class, 'store']);
 Router::get('/functions/([0-9]+)', [FunctionnController::class, 'show']);
 Router::get('/functions/([0-9]+)/edit', [FunctionnController::class, 'edit']);
-Router::put('/functions/([0-9]+)', [FunctionnController::class, 'update']);
-Router::delete('/functions/([0-9]+)', [FunctionnController::class, 'destroy']);
+Router::post('/functions/([0-9]+)/update', [FunctionnController::class, 'update']);
+Router::post('/functions/([0-9]+)/delete', [FunctionnController::class, 'destroy']);

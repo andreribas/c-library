@@ -50,4 +50,12 @@ class FunctionnRepository
         $stmt->execute([':title' => $functionn->title, ':description' => $functionn->description, ':header_id' => $functionn->header_id]);
         return $db->lastInsertId();
     }
+
+    public static function delete(Functionn $functionn)
+    {
+        $db = DB::get();
+        $stmt = $db->prepare("DELETE FROM `function` WHERE id = :id");
+        $stmt->execute([':id' => $functionn->id]);
+        return $stmt->rowCount() == 1;
+    }
 }

@@ -4,6 +4,7 @@ namespace Tests\Repository;
 
 use AndreRibas\Clibrary\Model\Functionn;
 use AndreRibas\Clibrary\Model\FunctionnCreator;
+use AndreRibas\Clibrary\Model\Header;
 use AndreRibas\Clibrary\Model\HeaderCreator;
 use AndreRibas\Clibrary\Repository\FunctionnRepository;
 use Tests\TestCase;
@@ -24,6 +25,27 @@ class FunctionnRepositoryTest extends TestCase
         $this->assertSameFunctionn($functionn, $functionn_from_get_all);
         $this->assertSameFunctionn($functionn, $functionn_from_get_by_header_id);
         $this->assertSameFunctionn($functionn, $functionn_from_get_by_title);
+    }
+
+    public function testDelete()
+    {
+        $header = HeaderCreator::create('stdio.h', 'Standard Input/Output header');
+        $functionn = FunctionnCreator::create('printf', 'Prints formatted data', $header->id);
+
+        $deleted = FunctionnRepository::delete($functionn);
+        $this->assertTrue($deleted);
+
+        $this->expectExceptionMessage("Function id {$functionn->id} not found");
+        FunctionnRepository::getById($functionn->id);
+    }
+
+    public function testDeleteNonExistentFunctionn()
+    {
+        $functionn = new Functionn();
+        $functionn->id = 1;
+
+        $deleted = FunctionnRepository::delete($functionn);
+        $this->assertFalse($deleted);
     }
 
     public function assertSameFunctionn(Functionn $functionn, Functionn $functionn_from_db): void

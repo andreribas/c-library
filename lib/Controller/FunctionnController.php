@@ -55,6 +55,9 @@ class FunctionnController
 
     public static function destroy(Request $request, $functionn_id)
     {
+        $functionn = FunctionnRepository::getById($functionn_id);
+        $deleted = FunctionnRepository::delete($functionn);
 
+        return self::index($request);
     }
 }
