@@ -24,6 +24,11 @@ class Request
 
     public function getParam(string $param)
     {
+        return is_string($this->params[$param]) ? htmlentities($this->params[$param]) : $this->params[$param];
+    }
+
+    public function getRawParam(string $param)
+    {
         return $this->params[$param];
     }
 
