@@ -9,23 +9,14 @@ services:
       MYSQL_DATABASE: clibrary
     ports:
       - "3306:3306"
-    volumes:
-      - "./db-data/mysql:/var/lib/mysql"
   web:
     build: .
     container_name: php_web
-    command: php -S 0.0.0.0:8000 -t /var/www/public
     depends_on:
       - db
     volumes:
       - .:/var/www/
-    secrets:
-      - sshkey_github
     ports:
       - "8000:8000"
     environment:
       - ENV=dev
-
-secrets:
-  sshkey_github:
-    file: ~/.ssh/id_rsa
