@@ -12,7 +12,7 @@ class Router
     {
         foreach (self::$routes[$request->getHttpMethod()] as $route_pattern => $route_action) {
             $matches = [];
-            $match = preg_match("@^$route_pattern$@", $request->getUri(), $matches);
+            $match = preg_match("@^$route_pattern$@", $request->getUrlPath(), $matches);
 
             if ($match) {
                 array_shift($matches);

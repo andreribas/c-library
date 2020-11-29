@@ -4,14 +4,14 @@ namespace AndreRibas\Clibrary\App;
 
 class Request
 {
-    private string $uri;
+    private string $url_path;
     private string $http_method;
     private array $params;
 
     public static function fromSuperGlobals(array $super_globals)
     {
         $obj = new self();
-        $obj->uri = $super_globals['SERVER']['REQUEST_URI'];
+        $obj->url_path = parse_url($super_globals['SERVER']['REQUEST_URI'], PHP_URL_PATH) ?: 'MALFORMED_URL_PATH';
         $obj->http_method = $super_globals['SERVER']['REQUEST_METHOD'];
         $obj->params = array_merge($super_globals['GET'], $super_globals['POST']);
         return $obj;
@@ -32,9 +32,9 @@ class Request
         return $this->params;
     }
 
-    public function getUri(): string
+    public function getUrlPath(): string
     {
-        return $this->uri;
+        return $this->url_path;
     }
 
     public function getHttpMethod(): string
