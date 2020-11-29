@@ -9,6 +9,7 @@ Router::notFound([MainController::class, 'notFound']);
 Router::error([MainController::class, 'error']);
 Router::get('/', [MainController::class, 'index']);
 Router::get('/about', [MainController::class, 'about']);
+Router::get('/search', [MainController::class, 'search']);
 
 Router::get('/headers', [HeaderController::class, 'index']);
 Router::get('/headers/create', [HeaderController::class, 'create']);

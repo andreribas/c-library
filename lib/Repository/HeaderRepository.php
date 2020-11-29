@@ -34,6 +34,14 @@ class HeaderRepository
         return $object;
     }
 
+    public static function getByTitle($title)
+    {
+        $db = Service::get('db');
+        $stmt = $db->prepare("SELECT * FROM header WHERE title like :title");
+        $stmt->execute([':title' => "%$title%"]);
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, Header::class);
+    }
+
     public static function create(Header $header)
     {
         $db = Service::get('db');

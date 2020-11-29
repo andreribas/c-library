@@ -5,6 +5,7 @@ namespace AndreRibas\Clibrary\Controller;
 use AndreRibas\Clibrary\App\HttpCode;
 use AndreRibas\Clibrary\App\Request;
 use AndreRibas\Clibrary\App\Response;
+use AndreRibas\Clibrary\Repository\FunctionnRepository;
 use AndreRibas\Clibrary\Repository\HeaderRepository;
 
 class MainController
@@ -20,6 +21,17 @@ class MainController
     {
         return new Response('about.php', [
             'title' => 'About us',
+        ]);
+    }
+
+    public static function search(Request $request)
+    {
+        $search = $request->getParam('search');
+
+        return new Response('search.php', [
+            'search' => $search,
+            'headers' => HeaderRepository::getByTitle($search),
+            'functionns' => FunctionnRepository::getByTitle($search),
         ]);
     }
 
