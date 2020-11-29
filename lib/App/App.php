@@ -28,6 +28,8 @@ class App
     private function renderAction(Request $request, callable $action, array $route_params): void
     {
         $response = $action($request, ...$route_params);
-        Service::get('renderer')->renderResponse($response);
+        if ($response instanceof Response) {
+            Service::get('renderer')->renderResponse($response);
+        }
     }
 }
