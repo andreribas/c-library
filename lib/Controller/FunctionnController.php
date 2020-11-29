@@ -48,12 +48,25 @@ class FunctionnController
 
     public static function edit(Request $request, $functionn_id)
     {
-
+        return new Response('functionn/edit.php', [
+            'headers' => HeaderRepository::getAllWithFunctionns(),
+            'functionn' => FunctionnRepository::getById((int)$functionn_id),
+        ]);
     }
 
     public static function update(Request $request, $functionn_id)
     {
+        $functionn = new Functionn();
+        $functionn->id = (int) $request->getParam('id');
+        $functionn->title = $request->getParam('title');
+        $functionn->description = $request->getParam('description');
+        $functionn->header_id = (int) $request->getParam('header_id');
+        $updated = FunctionnRepository::update($functionn);
 
+        if ($updated) Flash::message("Function {$functionn->title} updated successfully");
+        else Flash::error("Error trying to update Function {$functionn->title}");
+
+        return self::show($request, $functionn_id);
     }
 
     public static function destroy(Request $request, $functionn_id)

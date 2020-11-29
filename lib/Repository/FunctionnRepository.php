@@ -58,4 +58,17 @@ class FunctionnRepository
         $stmt->execute([':id' => $functionn->id]);
         return $stmt->rowCount() == 1;
     }
+
+    public static function update(Functionn $functionn)
+    {
+        $db = DB::get();
+        $stmt = $db->prepare("UPDATE `function` SET title = :title, description = :description, header_id = :header_id WHERE id = :id");
+        $stmt->execute([
+            ':id' => $functionn->id,
+            ':title' => $functionn->title,
+            ':description' => $functionn->description,
+            ':header_id' => $functionn->header_id
+        ]);
+        return $stmt->rowCount() == 1;
+    }
 }

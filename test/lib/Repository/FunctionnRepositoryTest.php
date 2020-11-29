@@ -48,6 +48,32 @@ class FunctionnRepositoryTest extends TestCase
         $this->assertFalse($deleted);
     }
 
+    public function testUpdateFunctionn()
+    {
+        $header1 = HeaderCreator::create('stdio.h', 'Standard Input/Output header');
+        $functionn = FunctionnCreator::create('printf', 'Prints formatted data', $header1->id);
+
+        $header2 = HeaderCreator::create('math.h', 'Math Library');
+        $functionn->title = 'sin';
+        $functionn->description = 'Calculates the sin of an angle';
+        $functionn->header_id = $header2->id;
+
+        $updated = FunctionnRepository::update($functionn);
+        $this->assertTrue($updated);
+
+        $functionn_from_get_by_id = FunctionnRepository::getById($functionn->id);
+        $this->assertSameFunctionn($functionn, $functionn_from_get_by_id);
+    }
+
+    public function testUpdateNonExistentFunctionn()
+    {
+        $functionn = new Functionn();
+        $functionn->id = 1;
+
+        $updated = FunctionnRepository::update($functionn);
+        $this->assertFalse($updated);
+    }
+
     public function assertSameFunctionn(Functionn $functionn, Functionn $functionn_from_db): void
     {
         $this->assertEquals($functionn->id, $functionn_from_db->id);
