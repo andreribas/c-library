@@ -20,6 +20,26 @@ class HeaderRepositoryTest extends TestCase
         $this->assertSameHeader($header, $header_from_get_all);
     }
 
+    public function testDelete()
+    {
+        $header = HeaderCreator::create('stdio.h', 'Standard Input/Output Library');
+
+        $deleted = HeaderRepository::delete($header);
+        $this->assertTrue($deleted);
+
+        $this->expectExceptionMessage("Header id {$header->id} not found");
+        HeaderRepository::getById($header->id);
+    }
+
+    public function testDeleteNonExistentHeader()
+    {
+        $header = new Header();
+        $header->id = 1;
+
+        $deleted = HeaderRepository::delete($header);
+        $this->assertFalse($deleted);
+    }
+
     public function assertSameHeader(Header $header, Header $header_from_get_by_id): void
     {
         $this->assertEquals($header->id, $header_from_get_by_id->id);

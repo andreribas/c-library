@@ -20,7 +20,7 @@ class HeaderController
     public static function create(Request $request)
     {
         return new Response('header/create.php', [
-            'headers' => HeaderRepository::getAllWithFunctionns(),
+            'headers' => HeaderRepository::getAll(),
         ]);
     }
 
@@ -56,6 +56,9 @@ class HeaderController
 
     public static function destroy(Request $request, $header_id)
     {
+        $header = HeaderRepository::getById($header_id);
+        $deleted = HeaderRepository::delete($header);
 
+        return self::index($request);
     }
 }
