@@ -4,6 +4,7 @@ namespace AndreRibas\Clibrary\Controller;
 
 use AndreRibas\Clibrary\App\Request;
 use AndreRibas\Clibrary\App\Response;
+use AndreRibas\Clibrary\Facade\Flash;
 use AndreRibas\Clibrary\Model\Functionn;
 use AndreRibas\Clibrary\Repository\FunctionnRepository;
 use AndreRibas\Clibrary\Repository\HeaderRepository;
@@ -32,6 +33,8 @@ class FunctionnController
         $functionn->header_id = (int) $request->getParam('header_id');
         $functionn->id = FunctionnRepository::create($functionn);
 
+        Flash::message("Function {$functionn->title} created successfully");
+
         return self::show($request, $functionn->id);
     }
 
@@ -57,6 +60,9 @@ class FunctionnController
     {
         $functionn = FunctionnRepository::getById($functionn_id);
         $deleted = FunctionnRepository::delete($functionn);
+
+        if ($deleted) Flash::message("Function {$functionn->title} deleted successfully");
+        else Flash::error("Error trying to delete Function {$functionn->title}");
 
         return self::index($request);
     }

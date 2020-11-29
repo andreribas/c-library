@@ -1,5 +1,6 @@
 <?php
 
+use AndreRibas\Clibrary\App\Flash;
 use AndreRibas\Clibrary\App\Renderer;
 use AndreRibas\Clibrary\App\Service;
 
@@ -18,9 +19,11 @@ function init_services()
 {
     $render = new Renderer();
     $db = getNewPdoConnection();
+    $flash = new Flash();
 
     Service::set('renderer', fn() => $render);
     Service::set('db', fn() => $db);
+    Service::set('flash', fn() => $flash);
 }
 
 init_services();

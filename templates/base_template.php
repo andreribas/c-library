@@ -41,11 +41,12 @@
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="sidebar-sticky pt-3">
-                    <?php template_include('partial/side-menu.php'); ?>
+                    <?php template_include('partial/side_menu.php'); ?>
                 </div>
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3">
+                <?php template_include('partial/flash_messages.php'); ?>
                 <?php block_include('content'); ?>
             </main>
         </div>

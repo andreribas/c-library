@@ -4,6 +4,7 @@ namespace AndreRibas\Clibrary\Controller;
 
 use AndreRibas\Clibrary\App\Request;
 use AndreRibas\Clibrary\App\Response;
+use AndreRibas\Clibrary\Facade\Flash;
 use AndreRibas\Clibrary\Model\Header;
 use AndreRibas\Clibrary\Repository\FunctionnRepository;
 use AndreRibas\Clibrary\Repository\HeaderRepository;
@@ -30,6 +31,8 @@ class HeaderController
         $header->title = $request->getParam('title');
         $header->description = $request->getParam('description');
         $header->id = HeaderRepository::create($header);
+
+        Flash::message("Header {$header->title} created successfully");
 
         return self::show($request, $header->id);
     }
@@ -58,6 +61,9 @@ class HeaderController
     {
         $header = HeaderRepository::getById($header_id);
         $deleted = HeaderRepository::delete($header);
+
+        if ($deleted) Flash::message("Header {$header->title} deleted successfully");
+        else Flash::error("Error trying to delete Header {$header->title}");
 
         return self::index($request);
     }
