@@ -25,3 +25,10 @@ function block_set(string $block_name, string $value) {
 function block_include(string $block_name) {
     Service::get('renderer')->block_include($block_name);
 }
+
+function dd($data) {
+    echo '<pre>';
+    var_dump($data);
+    echo '</pre>';
+    die();
+}
