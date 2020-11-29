@@ -11,7 +11,7 @@ function getNewPdoConnection(): \PDO
     $db_user = getenv('DB_USER') ?? throw new \Exception('Env DB_USER not set');
     $db_pass = getenv('DB_PASS');
 
-    return new \PDO("mysql:host={$db_host};port={$db_port};dbname={$db_name}", $db_user, $db_pass);
+    return new \PDO("mysql:host={$db_host};port={$db_port};dbname={$db_name};charset=utf8", $db_user, $db_pass);
 }
 
 function init_services()
