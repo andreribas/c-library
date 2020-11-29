@@ -4,6 +4,7 @@ namespace Tests;
 
 use AndreRibas\Clibrary\App\RouterForTests;
 use AndreRibas\Clibrary\App\Service;
+use AndreRibas\Clibrary\Facade\DB;
 use PHPUnit\Framework\TestCase as PhpunitTestCase;
 
 class TestCase extends PhpunitTestCase
@@ -14,12 +15,12 @@ class TestCase extends PhpunitTestCase
 
         RouterForTests::reset();
         Service::get('renderer')->reset();
-        Service::get('db')->beginTransaction();
+        DB::get()->beginTransaction();
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
-        Service::get('db')->rollBack();
+        DB::get()->rollBack();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace AndreRibas\Clibrary\Repository;
 
-use AndreRibas\Clibrary\App\Service;
 use AndreRibas\Clibrary\Facade\DB;
 use AndreRibas\Clibrary\Model\Header;
 
@@ -10,7 +9,7 @@ class HeaderRepository
 {
     public static function getAll(): array
     {
-        $db = Service::get('db');
+        $db = DB::get();
         $stmt = $db->query("SELECT * FROM header");
         return $stmt->fetchAll(\PDO::FETCH_CLASS, Header::class);
     }
@@ -25,7 +24,7 @@ class HeaderRepository
 
     public static function getById($id): Header
     {
-        $db = Service::get('db');
+        $db = DB::get();
         $stmt = $db->prepare("SELECT * FROM header WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $object = $stmt->fetchObject(Header::class);
@@ -37,7 +36,7 @@ class HeaderRepository
 
     public static function getByTitle($title): array
     {
-        $db = Service::get('db');
+        $db = DB::get();
         $stmt = $db->prepare("SELECT * FROM header WHERE title like :title");
         $stmt->execute([':title' => "%$title%"]);
         return $stmt->fetchAll(\PDO::FETCH_CLASS, Header::class);
@@ -45,7 +44,7 @@ class HeaderRepository
 
     public static function create(Header $header): int
     {
-        $db = Service::get('db');
+        $db = DB::get();
         $stmt = $db->prepare("INSERT INTO header (title, description) VALUES (:title, :description)");
         $stmt->execute([':title' => $header->title, ':description' => $header->description]);
         return $db->lastInsertId();
