@@ -1,43 +1,31 @@
-# C Library
+# c-library
 
-Pequeno sistema desenvolvido em PHP para a matérida de Desenvolvimento em PHP
-no curso de Análise e Desenvolvimento de Sistemas na Universidade Positivo.
+A college project that became a framework.
 
+The assignment was straightforward: build a CRUD system for a library catalog. Instead of reaching for Laravel or any existing framework, I used the assignment as an excuse to build a functional MVC framework from scratch — because the actual coursework was too simple to be interesting on its own.
 
-# Utilização
+## What it is
 
-```
-docker-compose up
-```
+A working PHP MVC framework built incrementally, with a simple library management system running on top of it as the demo application.
 
-Com o container rodando basta acessar a url: http://localhost:8000
+**The framework includes:**
+- A request router
+- A lightweight template engine
+- A base Model layer with database abstraction
+- A Controller structure with lifecycle handling
 
-# Estrutura
+## Why the git history matters
 
-O sistema foi desenvolvido utilizando o pattern MVC. Alguns pontos de interesse do sistema:
+The early commits are intentional. Each one implements a single piece of the framework — first the router, then the template system, then the model layer, and so on. The commit history was designed to be readable as a step-by-step walkthrough of how an MVC framework comes together from nothing.
 
-- **config/routes.php**: Define as rotas do sistema
-- **lib/Controller**: Contém os controllers
-- **lib/Model**: Contém os models
-- **lib/Repository**: Contém os repositories que lidam com a persistencia dos models no banco de dados
-- **templates**: Contém os templates utilizados para gerar as páginas
+If you want to understand how these pieces connect at a fundamental level, reading the commits in order is the point.
 
-# Telas
-Tela inicial:
-![image](https://user-images.githubusercontent.com/605008/100555757-7c704c80-327c-11eb-9d2a-e67a093fcb83.png)
+## Why build a framework instead of using one?
 
-Listagem de Headers:
-![image](https://user-images.githubusercontent.com/605008/100555820-da9d2f80-327c-11eb-84f8-1266cb6a7d94.png)
+I already had several years of PHP experience at this point and was using Laravel professionally. The coursework didn't require any of this complexity — a few procedural PHP files would have passed. But building constraints from scratch, even simple ones, is one of the fastest ways to deeply understand why frameworks make the decisions they do.
 
-Listagem de Functions:
-![image](https://user-images.githubusercontent.com/605008/100555833-eb4da580-327c-11eb-87cb-37564266969a.png)
+## Stack
 
-Detalhes de uma Function:
-![image](https://user-images.githubusercontent.com/605008/100555849-091b0a80-327d-11eb-8250-1955225536b8.png)
-
-Edição de uma Function:
-![image](https://user-images.githubusercontent.com/605008/100555896-3c5d9980-327d-11eb-8b81-7e549005da9e.png)
-
-Resultado de busca:
-![image](https://user-images.githubusercontent.com/605008/100555865-1c2dda80-327d-11eb-9d29-c45efdd31f11.png)
-
+- PHP
+- MySQL
+- No external dependencies
